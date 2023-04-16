@@ -16,6 +16,10 @@ public class Users {
 	private String cpf;
 	private String email;
 	private String phone;
+	
+	public Users() {
+		
+	}
 
 	public Users(String name, String cpf, String email, String phone) {
 

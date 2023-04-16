@@ -1,11 +1,13 @@
 package packages;
 
 import java.util.ArrayList;
-import java.util.Scanner;
+
+import javax.swing.JOptionPane;
 
 public class Agency {
 
-	static Scanner scan = new Scanner(System.in);
+	//static Scanner scan = new Scanner(System.in);
+	 
 
 	static ArrayList<Account> accounts;
 
@@ -17,20 +19,29 @@ public class Agency {
 	}
 
 	public static void operations() {
+		
+		int operation = Integer.parseInt(JOptionPane.showInputDialog("--- select operation ---"+
+		
+		" option 1 - open a account "+
+		" option 2 - deposit "+
+	    " option 3 - withdraw "+
+		" option 4 - transfer "+
+	    " option 5 - list " +
+		" option 6 - exit "));
 
-		System.out.println("--------------------------------------");
-		System.out.println("----------welcome sr.-----------------");
-		System.out.println("--------------------------------------");
-		System.out.println("----------select a option-------------");
-		System.out.println("--------------------------------------");
-		System.out.println(" | option 1 - open a account ");
-		System.out.println(" | option 2 - deposit ");
-		System.out.println(" | option 3 - withdraw ");
-		System.out.println(" | option 4 - transfer ");
-		System.out.println(" | option 5 - list ");
-		System.out.println(" | option 6 - exit ");
+		//System.out.println("--------------------------------------");
+		//System.out.println("----------welcome sr.-----------------");
+		//System.out.println("--------------------------------------");
+		//System.out.println("----------select a option-------------"); 
+		//System.out.println("--------------------------------------");
+		//System.out.println(" | option 1 - open a account ");
+		//System.out.println(" | option 2 - deposit ");
+    	//System.out.println(" | option 3 - withdraw ");
+		//System.out.println(" | option 4 - transfer ");
+		//System.out.println(" | option 5 - list ");
+		//System.out.println(" | option 6 - exit ");
 
-		int operation = scan.nextInt();
+		//int operation = scan.nextInt();
 
 		switch (operation) {
 		case 1:
@@ -63,11 +74,13 @@ public class Agency {
 
 		switch (operation) {
 		case 6:
-			System.out.println("obg por usar nosso sistema");
+			JOptionPane.showMessageDialog(null, "thanks for use your system sr.");
+		//	System.out.println("obg por usar nosso sistema");
 			System.exit(0);
 
 		default:
-			System.out.println("invalid opetion");
+			JOptionPane.showMessageDialog(null, "invalid option");
+			//System.out.println("invalid opetion");
 			operations();
 			break;
 
@@ -75,26 +88,32 @@ public class Agency {
 	}
 
 	public static void openAccount() {
+		
+		Users users = new Users();
+		
+		users.setName(JOptionPane.showInputDialog("Name"));
+		users.setCpf(JOptionPane.showInputDialog("cpf"));
+		users.setEmail(JOptionPane.showInputDialog("email"));
+		users.setPhone(JOptionPane.showInputDialog("phone"));
+		
+		//String name = scan.next();
 
-		System.out.println("Name");
-		String name = scan.next();
+		//System.out.println("Cpf");
+		//String cpf = scan.next();
 
-		System.out.println("Cpf");
-		String cpf = scan.next();
+	//	System.out.println("Email");
+		//String email = scan.next();
 
-		System.out.println("Email");
-		String email = scan.next();
+		//System.out.println("Phone");
+	//	String phone = scan.next();
 
-		System.out.println("Phone");
-		String phone = scan.next();
-
-		Users users = new Users(name, cpf, email, phone);
+		//Users users = new Users(name, cpf, email, phone);
 
 		Account account = new Account(users); // users
 
 		accounts.add(account);
-
-		System.out.println("account create sucessfull");
+		JOptionPane.showInputDialog("account create sucessfull");
+		//System.out.println("account create sucessfull");
 
 		operations();
 
@@ -114,59 +133,76 @@ public class Agency {
 	}
 
 	public static void deposit() {
+		
+		
+		int accountNumber = Integer.parseInt(JOptionPane.showInputDialog("insert account number for deposit"));
 
-		System.out.println("insert account number ");
-
-		int accountNumber = scan.nextInt();
+		//System.out.println("insert account number ");
+		//int accountNumber = scan.nextInt();
 
 		Account account = findAccount(accountNumber);
 
 		if (account != null) {
-			System.out.println("what is the deposit amount");
-			Double depositValue = scan.nextDouble();
+			//System.out.println("what is the deposit amount");
+		//	Double depositValue = scan.nextDouble();
+			Double depositValue = Double.parseDouble(JOptionPane.showInputDialog("insert account number for deposit"));
 			account.deposity(depositValue);
 			System.out.println("deposit sucessfull");
 		} else {
-			System.out.println("account not found");
+			JOptionPane.showInputDialog(null, "account not found");
+			//System.out.println("account not found");
 		}
 		operations();
 	}
-
+//achei q fiquei meio estranho a logoca do metodo, evolui para opcao valida pos login apenas
 	public static void withdraw() {
-		System.out.println("insert account number ");
-		int accountNumber = scan.nextInt();
+		int accountNumber = Integer.parseInt(JOptionPane.showInputDialog("insert number account for withdraw"));
+		//System.out.println("insert account number ");
+		//int accountNumber = scan.nextInt();
 		Account account = findAccount(accountNumber);
 
 		if (account != null) {
-			System.out.println("what is the withdraw amount");
-			Double withdrawValue = scan.nextDouble();
-			account.withdraw(withdrawValue);
-			System.out.println("withdraw sucessfull");
+			Double withDrawValue = Double.parseDouble(JOptionPane.showInputDialog("insert the value withdraw"));
+			//System.out.println("what is the withdraw amount");
+			//Double withdrawValue = scan.nextDouble();
+			account.withdraw(withDrawValue);
+			
+			//System.out.println("withdraw sucessfull");
 		} else {
-			System.out.println("account not found");
+			JOptionPane.showInputDialog(null, "account not found");
+			//System.out.println("account not found");
 		}
 		operations();
 	}
 
 	public static void transfer() {
-		System.out.println("insert account number remetente ");
-		int numberAccountRemetente = scan.nextInt();
+		
+		int numberAccountRemetente=Integer.parseInt(JOptionPane.showInputDialog("insert account number remetente"));
+	//	System.out.println("insert account number remetente ");
+		//int numberAccountRemetente = scan.nextInt();
 		Account accountRemetente = findAccount(numberAccountRemetente);
 
 		if (accountRemetente != null) {
-			System.out.println("insert the number account destinatario");
-			int numberAccountDestinatario = scan.nextInt();
+			
+			int numberAccountDestinatario=Integer.parseInt(JOptionPane.showInputDialog("insert the number account destinatario"));
+		//	System.out.println("insert the number account destinatario");
+			//int numberAccountDestinatario = scan.nextInt();
+			
 			Account accountDestinatario = findAccount(numberAccountDestinatario);
 			if (accountDestinatario != null) {
-				System.out.println("insert  the value transfer");
-				Double value = scan.nextDouble();
+				
+				Double value = Double.parseDouble(JOptionPane.showInputDialog("insert  the value transfer"));
+			//	System.out.println("insert  the value transfer");
+			//	Double value = scan.nextDouble();
 
 				accountRemetente.transfer(accountDestinatario, value);
 			} else {
-				System.out.println("account not found");
+				JOptionPane.showInputDialog(null, "account not found");
+				//System.out.println("account not found");
 			}
 		} else {
-			System.out.println("account for transfer not found");
+			JOptionPane.showInputDialog(null, "account not found");
+			//System.out.println("account for transfer not found");
 
 		}
 		operations();
@@ -176,10 +212,12 @@ public class Agency {
 
 		if (accounts.size() > 0) {
 			for (Account account : accounts) {
-				System.out.println(account);
+				JOptionPane.showInputDialog(null, account);
+				//System.out.println(account);
 			}
 		} else {
-			System.out.println("not register");
+			JOptionPane.showInputDialog(null, "not register");
+			//System.out.println("not register");
 
 		}
 		operations();

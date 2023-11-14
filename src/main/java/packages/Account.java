@@ -3,10 +3,11 @@ package packages;
 import javax.swing.JOptionPane;
 
 import lombok.Data;
+import packages.models.Users;
 import utilitarios.Utils;
 
 @Data
-public class Account {
+public class Account { 
 
 	// @Id
 	// @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -34,22 +35,22 @@ public class Account {
 	public void deposity(Double value) {
 		if (value > 0) {
 			setBalance(getBalance() + value);
-			JOptionPane.showInputDialog("successful deposit");
-			// System.out.println("successful deposit");
+			// JOptionPane.showInputDialog("successful deposit");
+			System.out.println("successful deposit");
 		} else {
-			JOptionPane.showInputDialog("unable to make deposit");
-			// System.out.println("unable to make deposit");
+			// JOptionPane.showInputDialog("unable to make deposit");
+			System.out.println("unable to make deposit");
 		}
 	}
 
 	public void withdraw(Double value) {
 		if (value > 0 && this.getBalance() >= value) {
 			setBalance(getBalance() - value);
-			JOptionPane.showInputDialog("successful withdraw");
-			// System.out.println("successful withdraw");
+			//JOptionPane.showInputDialog("successful withdraw");
+			 System.out.println("successful withdraw");
 		} else {
-			JOptionPane.showInputDialog("unable to make withdraw");
-			// System.out.println("unable to make withdraw");
+			//JOptionPane.showInputDialog("unable to make withdraw");
+			 System.out.println("unable to make withdraw");
 
 		}
 	}
